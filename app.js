@@ -2,6 +2,8 @@
 var http = require('http');
 var fs = require('fs');
 
+var port = process.argv.length > 2 ? process.argv[2] : 8000;
+
 fs.readFile('./index.html', function (error, site) {
   if (error) throw error;
   http
@@ -10,5 +12,5 @@ fs.readFile('./index.html', function (error, site) {
       response.write(site);
       response.end();
     })
-    .listen(8010);
+    .listen(port);
 });
