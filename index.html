@@ -5,6 +5,65 @@
         <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
         <style>
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+                touch-action: none; /* Added this to remove default actions such as swiping down to refresh */
+            }
+
+            .button {
+                visibility: visible;
+                margin: 10px;
+                padding: 10px;
+                font-size: 16px;
+            }
+        </style>
+    </head>
+    <body touch-action="none">
+        <button id = "1.1" class = 'button'>
+            1.1
+        </button>
+        <button id = "1.2" class = 'button'>
+            1.2
+        </button>
+        <button id = "2.1" class = 'button'>
+            2.1
+        </button>
+        <button id = "2.2" class = 'button'>
+            2.2
+        </button>
+        <script type="module">
+            var buttons = document.getElementsByClassName('button');
+            import {morse_read} from "./morse_read.js";
+            import {gesture_read} from "./gesture_read.js";
+            var button3 = document.getElementById("2.1");
+            button3.onclick = () => {
+                for (let i = 0; i < buttons.length; i++) {
+                    buttons[i].hidden = true
+                }
+                morse_read(() => {for (let i = 0; i < buttons.length; i++) {
+                    buttons[i].hidden = false
+                }})
+            };
+            var button4 = document.getElementById("2.2");
+            button4.onclick = () => {
+                for (let i = 0; i < buttons.length; i++) {
+                    buttons[i].hidden = true
+                }
+                gesture_read(() => {for (let i = 0; i < buttons.length; i++) {
+                    buttons[i].hidden = false
+                }})
+            }
+        </script>
+    </body>
+</html><!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
+        <style>
             .button {
                 visibility:visible
             }
