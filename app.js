@@ -3,28 +3,32 @@ var http = require('http');
 var fs = require('fs');
 var path = require('path'); // Only added this to handle different file types
 
-http.createServer(function (request, response) {
-  let filePath = request.url === '/' ? './index.html' : '.' + request.url;  
-  
-  // Added this to determine the MIME type based on file extension
-  let extname = path.extname(filePath);
-  let contentType = 'text/html';  
+http
+  .createServer(function (request, response) {
+    let filePath = request.url === '/' ? './index.html' : '.' + request.url; // Serve either index.html or other requested files
 
-  if (extname === '.js') {  // correct MIME type for .js files
-    contentType = 'application/javascript';
-  }
+    // Determine the MIME type based on file extension
+    let extname = path.extname(filePath);
+    let contentType = 'text/html'; // Default to HTML
 
-  // Read and serve the requested file
-  fs.readFile(filePath, function (error, content) {
-    if (error) {
-      response.writeHead(404, { 'Content-Type': 'text/html' });
-      response.end('<h1>404 - File Not Found</h1>', 'utf-8');
-    } else {
-      response.writeHead(200, { 'Content-Type': contentType });
-      response.end(content, 'utf-8');
+    if (extname === '.js') {
+      // Serve JavaScript files with the correct MIME type
+      contentType = 'application/javascript';
     }
-  });
-}).listen(8010);
+
+    // Read and serve the requested file
+    fs.readFile(filePath, function (error, content) {
+      if (error) {
+        // If file not found, return 404
+        response.writeHead(404, { 'Content-Type': 'text/html' });
+        response.end('<h1>404 - File Not Found</h1>', 'utf-8');
+      } else {
+        // Serve the file with the correct content type
+        response.writeHead(200, { 'Content-Type': contentType });
+        response.end(content, 'utf-8');
+      }
+    });
+  })
+  .listen(8010);
 
 console.log('Server running at http://localhost:8010');
-

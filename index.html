@@ -11,12 +11,13 @@
                 height: 100vh;
                 touch-action: none; /* Added this to remove default actions such as swiping down to refresh */
             }
-
             .button {
-                visibility: visible;
-                margin: 10px;
-                padding: 10px;
-                font-size: 16px;
+                visibility:visible
+            }
+            .reset {
+                position:fixed;
+                top: 50%;
+                left: 50%;
             }
         </style>
     </head>
@@ -48,6 +49,8 @@
         </button>
         <button id="2.2" class="button">
             Send by Gestures (2.2)
+        </button>
+        <button id = "done" hidden = true class = 'reset'>
         </button>
         <script type="module">
             var buttons = document.getElementsByClassName('button');
