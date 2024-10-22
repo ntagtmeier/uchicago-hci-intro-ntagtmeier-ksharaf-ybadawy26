@@ -8,6 +8,11 @@
             .button {
                 visibility:visible
             }
+            .reset {
+                position:fixed;
+                top: 50%;
+                left: 50%;
+            }
         </style>
     </head>
     <body touch-action="none">
@@ -22,6 +27,8 @@
         </button>
         <button id = "2.2" class = 'button'>
             2.2
+        </button>
+        <button id = "done" hidden = true class = 'reset'>
         </button>
         <script type="module">
             var buttons = document.getElementsByClassName('button');

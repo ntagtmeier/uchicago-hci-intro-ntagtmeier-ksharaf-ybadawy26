@@ -41,11 +41,39 @@ export const gesture_read = (callback) => {
     }
   });
   const finish = () => {
-    hammertime.off('swipe');
+    hammertime.destroy();
     console.log(results);
-    hammertime.on('tap', () => {
+    var results_translated = [];
+    for (let result of results) {
+      switch (result) {
+        case 0:
+          results_translated.push('👍');
+          break;
+        case 1:
+          results_translated.push('❤️');
+          break;
+        case 2:
+          results_translated.push('😂');
+          break;
+        case 3:
+          results_translated.push('😃');
+          break;
+        case 4:
+          results_translated.push('😢');
+          break;
+        case 5:
+          results_translated.push('😠');
+          break;
+        default:
+          results_translated.push('?');
+      }
+    }
+    var next_button = document.getElementById('done');
+    next_button.innerHTML = results_translated.toString();
+    next_button.hidden = false;
+    next_button.onclick = () => {
       callback();
-      hammertime.destroy();
-    });
+      next_button.hidden = true;
+    };
   };
 };
