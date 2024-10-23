@@ -12,42 +12,24 @@
                 touch-action: none; /* Added this to remove default actions such as swiping down to refresh */
             }
             .button {
-                visibility:visible
+                visibility:visible;
+                min-height: 10%;
+                margin-top: 10%;
+                margin-left: 10%;
             }
             .reset {
                 position:fixed;
                 top: 50%;
                 left: 50%;
+                min-height:10%;
             }
         </style>
     </head>
     <body touch-action="none">
-        <button id="1.1" class="button">
-            Encode_Vibration_Morse_Yazid (1.1)
-        </button>
-        <button id="1.2.1" class="button">
-            Like
-        </button>
-        <button id="1.2.2" class="button">
-            Love
-        </button>
-        <button id="1.2.3" class="button">
-            Haha
-        </button>
-        <button id="1.2.4" class="button">
-            Yay
-        </button>
-        <button id="1.2.5" class="button">
-            Sad
-        </button>
-        <button id="1.2.6" class="button">
-            Angry
-        </button>
-        
         <button id="2.1" class="button">
             Send by Tapping (2.1)
         </button>
-        <button id="2.2" class="button">
+        <button id="2.2" class="button" float="right">
             Send by Gestures (2.2)
         </button>
         <button id = "done" hidden = true class = 'reset'>
@@ -56,40 +38,6 @@
             var buttons = document.getElementsByClassName('button');
             import {morse_read} from "./morse_read.js";
             import {gesture_read} from "./gesture_read.js";
-            import { vibrate_emoticon } from "./encoding_pluses_f1.js";
-            for (let i = 0; i < 6; i++) {
-                const button = document.getElementById(`1.2.${i + 1}`);
-                button.onclick = () => {
-                    for (let j = 0; j < buttons.length; j++) {
-                        buttons[j].hidden = true;
-                    }
-
-                    switch (i) {
-                        case 0:
-                            vibrate_emoticon('like');
-                            break;
-                        case 1:
-                            vibrate_emoticon('love');
-                            break;
-                        case 2:
-                            vibrate_emoticon('haha');
-                            break;
-                        case 3:
-                            vibrate_emoticon('yay');
-                            break;
-                        case 4:
-                            vibrate_emoticon('sad');
-                            break;
-                        case 5:
-                            vibrate_emoticon('angry');
-                            break;
-                    }
-
-                    for (let j = 0; j < buttons.length; j++) {
-                        buttons[j].hidden = false;
-                    }
-                };
-            }
             var button3 = document.getElementById("2.1");
             button3.onclick = () => {
                 for (let i = 0; i < buttons.length; i++) {
