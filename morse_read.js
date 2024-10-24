@@ -32,10 +32,10 @@ export const morse_read = (callback) => {
         i += 1;
       }
       switch (word) {
-        case '111':
+        case '101':
           results_translated.push('👍');
           break;
-        case '110':
+        case '100':
           results_translated.push('❤️');
           break;
         case '011':
@@ -44,7 +44,7 @@ export const morse_read = (callback) => {
         case '010':
           results_translated.push('😃');
           break;
-        case '101':
+        case '001':
           results_translated.push('😢');
           break;
         case '000':
@@ -55,7 +55,6 @@ export const morse_read = (callback) => {
       }
     }
     var next_button = document.getElementById('done');
-    next_button.innerHTML = results_translated.toString();
     console.log(results_translated.toString());
     next_button.hidden = false;
     next_button.onclick = () => {

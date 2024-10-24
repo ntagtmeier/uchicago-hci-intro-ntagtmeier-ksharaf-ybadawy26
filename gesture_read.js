@@ -92,7 +92,6 @@ export const gesture_read = (callback) => {
       }
     }
     var next_button = document.getElementById('done');
-    next_button.innerHTML = results_translated.toString();
     next_button.hidden = false;
     next_button.onclick = () => {
       callback();
